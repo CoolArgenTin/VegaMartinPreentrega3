@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    Reg Celular
+{% endblock title %}
+
+{% block color %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+{% endblock color %}
+
+{% block header %}
+    Registrar Celulares
+{% endblock header %}
+
+{% block main %}
+
+<form action={% url "crear_celu" %} method = 'POST'>
+
+    {% csrf_token %}
+
+     {{form}}
+
+     <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}
