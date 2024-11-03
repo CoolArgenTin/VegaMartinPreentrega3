@@ -1,0 +1,28 @@
+{% extends "inicio/index.html" %}
+{% load static %}
+
+{% block title %}
+    Edición
+{% endblock title %}
+
+{% block color %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+{% endblock color %}
+
+{% block header %}
+    Editando Celular {{celular}}
+{% endblock header %}
+
+{% block main %}
+
+<form action={% url "editar_celu" celular.id %} method = 'POST' enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+     {{form}}
+
+     <input type="submit" value="Editar">
+
+</form>
+
+{% endblock main %}

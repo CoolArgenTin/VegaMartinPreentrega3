@@ -1,0 +1,24 @@
+{% extends "inicio/index.html" %}
+
+{% block title %}
+{{request.user.username}}
+{% endblock title %}
+
+{% block header %}
+Editando Perfil
+{% endblock header %}
+
+
+{% block main %}
+
+<form action={% url "usuarios:editar_perfil" %} method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    
+    {{form}}
+    <input type="submit" value='Editar'>
+
+</form>
+
+
+
+{% endblock main %}

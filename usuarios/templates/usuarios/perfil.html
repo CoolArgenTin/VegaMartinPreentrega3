@@ -1,0 +1,50 @@
+{% extends "inicio/index.html" %}
+
+{% block title %}
+Usuario
+{% endblock title %}
+
+{% block header %}
+{{request.user.username}} <img src={{request.user.datosextra.avatar.url}} width='50px'>
+{% endblock header %}
+
+
+{% block main2 %}
+
+<div>
+    <div style="display: flex; justify-content: left;">
+        
+</div>
+
+<div>
+    <div style="display: flex; justify-content: safe center;">
+        <h2>Descripción:</h2> <br>
+        
+
+</div>
+<p>
+    <div style="display: flex; justify-content: safe center;">
+    {{ user.datosextra.bio }}
+</p>
+{% endblock main2 %}
+
+
+{% block main %}
+
+<p>
+Usuario : {{request.user.username}}
+</p>
+<p>
+Email : {{request.user.email}}
+</p>
+<p>
+Nombre : {{request.user.first_name}}
+</p>
+<p>
+Apellido : {{request.user.last_name}}
+</p>
+
+
+<a class="btn btn-success" href={% url "usuarios:editar_perfil" %}>Editar Perfil</a> <a class="btn btn-warning" href={% url "usuarios:cambiar_contra" %} >Cambiar Contraseña</a> <a class="btn btn-danger" href={% url "usuarios:borrar" user.id %}>Borrar Perfil</a>
+
+{% endblock main %}

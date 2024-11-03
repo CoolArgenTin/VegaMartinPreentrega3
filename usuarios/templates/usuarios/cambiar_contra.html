@@ -1,0 +1,17 @@
+{% extends "inicio/index.html" %}
+
+{% block header %}
+Cambio de contraseña de {{request.user.username}}
+{% endblock header %}
+
+{% block main %}
+
+<form action={% url "usuarios:cambiar_contra" %} method="post">
+    {% csrf_token %}
+
+    {{form}}
+    <input type="submit" value='Editar'>
+
+</form>
+
+{% endblock main %}

@@ -1,0 +1,42 @@
+{% extends "inicio/index.html" %}
+{% load static %}
+
+{% block title %}
+    {{request.user.username}}
+{% endblock title %}
+
+{% block color %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+{% endblock color %}
+
+{% block header %}
+    Eliminar
+{% endblock header %}
+
+{% block main %}
+
+
+    
+
+<form action={% url "usuarios:borrar" user.id %} method="POST">
+    {% csrf_token %}
+
+    <p>Estar seguro de eliminar tu cuenta?</p>
+    <h2>Esta es una opción irreversible</h2>
+
+    <br>
+
+    <div>
+
+<div style="display: flex; justify-content: safe center;">
+
+    <input type="submit" value="Confirmar">
+    
+</div>
+
+</form>
+        
+
+
+
+{% endblock main %}

@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import Celular
 from .forms import CelularFormulario, BuscarCelular
-from django.http import HttpResponse
-
+from django.views.generic import DetailView, DeleteView, UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
-    return render(request, "index.html")
+    return render(request, "inicio/index.html")
 
 
+@login_required
 def crear_celu(request):
     
     registro = CelularFormulario()
@@ -22,13 +25,12 @@ def crear_celu(request):
             return redirect('crear_celu')
             
             
-            
-    return render(request, 'reg_celular.html', {'form': registro})
+    return render(request, 'inicio/reg_celular.html', {'form': registro})
+
 
 def buscar_celu(request):
     
     buscador = BuscarCelular(request.GET)
-    
     
     if buscador.is_valid():
         
@@ -39,10 +41,26 @@ def buscar_celu(request):
     else:
         celulares = Celular.objects.all()
     
-    return render(request, 'buscador.html', {'celulares': celulares, 'search': buscador})
+    return render(request, 'inicio/buscador.html', {'celulares': celulares, 'search': buscador})
     
     
     
 def about(request):
     
-    return render(request, 'about.html')
+    return render(request, 'inicio/about.html')
+    
+class Descripcion(DetailView):
+    model = Celular
+    template_name = "inicio/descripcion.html"
+
+class Borrar(LoginRequiredMixin, DeleteView):
+    model = Celular
+    template_name = "inicio/borrar.html"
+    success_url = reverse_lazy("buscar_celu")
+    
+
+class Editar(LoginRequiredMixin, UpdateView):
+    model = Celular
+    template_name = "inicio/editar.html"
+    success_url = reverse_lazy('buscar_celu')
+    fields = ['fabricante', 'modelo', 'color', 'anio', 'imagen']

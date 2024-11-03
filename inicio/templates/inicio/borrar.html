@@ -1,0 +1,28 @@
+{% extends "inicio/index.html" %}
+{% load static %}
+
+{% block title %}
+    {{Celular}}
+{% endblock title %}
+
+{% block color %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+{% endblock color %}
+
+{% block header %}
+    Borrar
+{% endblock header %}
+
+{% block main %}
+
+<form action={% url "borrar" celular.id %} method="POST">
+    {% csrf_token %}
+
+    <p>Estar seguro de eliminar el celular {{celular}}?</p>
+
+    <input type="submit" value="Confirmar">
+
+</form>
+
+
+{% endblock main %}

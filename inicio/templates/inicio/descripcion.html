@@ -1,0 +1,45 @@
+{% extends "inicio/index.html" %}
+{% load static %}
+
+{% block title %}
+    {{celular}}
+{% endblock title %}
+
+{% block color %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+{% endblock color %}
+
+{% block header %}
+    Información Detallada
+{% endblock header %}
+
+
+{% block main2 %}
+<div>
+    <div style="display: flex; justify-content: center;">
+        {% if celular.imagen %}
+        <img src={{celular.imagen.url}} height='300px'>
+        {% else %}
+        <img src="/media/celu_img/default.jpg" height='300px'>
+        {% endif %}
+</div>
+
+{% endblock main2 %}
+
+{% block main %}
+
+<p>
+Fabricante: {{celular.fabricante}}
+</p>
+
+<p>
+Modelo: {{celular.modelo}}
+</p>
+<p>
+Color: {{celular.color}}
+</p>
+<p>
+Año: {{celular.anio}}
+</p>
+
+{% endblock main %}

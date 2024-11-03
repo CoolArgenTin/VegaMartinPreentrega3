@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "inicio/index.html" %}
 {% load static %}
 {% block title %}
 Buscador
@@ -28,7 +28,10 @@ Buscador de Celulares
 {% for celular in celulares %}
 
 <li>
-    {{celular}}
+    {{celular}} |
+    <a href={% url "descripcion" celular.id %}> Descripción</a></li> |
+    <a href={% url "borrar" celular.id %}> Borrar</a></li> | 
+    <a href={% url "editar_celu" celular.id %}> Editar</a></li> 
 </li>
 
 {% endfor %}

@@ -12,6 +12,3 @@ class BuscarCelular(forms.Form):
     modelo = forms.CharField(max_length=30, required=False)
     color = forms.CharField(max_length=10, required=False)
     
-    
-
-        
